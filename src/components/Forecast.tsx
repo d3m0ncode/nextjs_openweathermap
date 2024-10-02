@@ -2,7 +2,8 @@
 
 import { UseWeatherMap } from "@/hooks/UseWeatherMap";
 import React, { useEffect } from "react";
-
+import styled from "styled-components";
+ 
 const Forecast = () => {
   ////hook
   const { getForecast, forecast, coordinates } = UseWeatherMap();
@@ -25,16 +26,7 @@ const Forecast = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {forecast.map((forecast, index) => (
-            <div
-              key={index}
-              className="shadow-md rounded-lg p-4"
-              style={{
-                backgroundImage:
-                  "-webkit-linear-gradient(to right, rgba(35, 122, 87, 0.8), rgba(9, 48, 40, 0.8))" /* Chrome 10-25, Safari 5.1-6 */,
-                backgroundImage:
-                  "linear-gradient(to right, rgba(23, 255, 162, 0.486), rgba(186, 11, 255, 0.674))" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
-              }}
-            >
+            <WeatherCard key={index} className="shadow-md rounded-lg p-4">
               <p className="font-bold text-lg text-black ">
                 {new Date(forecast.dt_txt).toLocaleString()}
               </p>
@@ -54,7 +46,7 @@ const Forecast = () => {
                 <p className="text-black">No se espera lluvia</p>
               )}
               <p className="text-black">Humedad: {forecast.main.humidity}%</p>
-            </div>
+            </WeatherCard>
           ))}
         </div>
       </div>
@@ -63,3 +55,21 @@ const Forecast = () => {
 };
 
 export default Forecast;
+
+const WeatherCard = styled.div`
+  background: #093028;
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(35, 122, 87, 0.8),
+    rgba(9, 48, 40, 0.8)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(23, 255, 162, 0.486),
+    rgba(186, 11, 255, 0.674)
+  );
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 20rem;
+`;

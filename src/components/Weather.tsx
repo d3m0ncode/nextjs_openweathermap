@@ -3,6 +3,7 @@ import { UseWeatherMap } from "@/hooks/UseWeatherMap";
 import React from "react";
 import { useEffect } from "react";
 import Image from "next/image";
+import styled from "styled-components";
 const Weather = () => {
   /////LAMAR HOOK
   const { getWeather, coordinates, weather, isLoading } = UseWeatherMap();
@@ -16,7 +17,7 @@ const Weather = () => {
     return <h2>Cargando...</h2>;
   }
 
-  if (!weather || !weather.main || !weather.weather) {
+  if (!weather || !weather?.main || !weather?.weather) {
     return <h2>Datos del clima no disponibles...</h2>;
   }
 
@@ -25,15 +26,7 @@ const Weather = () => {
       {!weather ? (
         <h2>cargando....</h2>
       ) : (
-        <div
-          className=" shadow-md rounded-lg p-6 max-w-xs"
-          style={{
-            backgroundImage:
-              "-webkit-linear-gradient(to right, rgba(35, 122, 87, 0.8), rgba(9, 48, 40, 0.8))" /* Chrome 10-25, Safari 5.1-6 */,
-            backgroundImage:
-              "linear-gradient(to right, rgba(23, 255, 162, 0.486), rgba(186, 11, 255, 0.674))" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
-          }}
-        >
+        <WeatherCard className=" shadow-md rounded-lg p-6 max-w-xs">
           <h2 className="text-2xl font-bold mb-4 text-center">
             Clima en {weather.name}
           </h2>
@@ -57,10 +50,28 @@ const Weather = () => {
             <p>Viento: {weather.wind.speed} m/s</p>
             <p>Presión: {weather.main.pressure} hPa</p>
           </div>
-        </div>
+        </WeatherCard>
       )}
     </div>
   );
 };
 
 export default Weather;
+
+const WeatherCard = styled.div`
+  background: #093028;
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(35, 122, 87, 0.8),
+    rgba(9, 48, 40, 0.8)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(23, 255, 162, 0.486),
+    rgba(186, 11, 255, 0.674)
+  );
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 20rem;
+`;

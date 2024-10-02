@@ -1,7 +1,5 @@
 "use client";
 
-
-import { useEffect, useState } from "react";
 import Forecast from "@/components/Forecast";
 import Weather from "@/components/Weather";
 export default function Home() {

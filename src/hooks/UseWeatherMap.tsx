@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getweather, getforecast } from "@/api/endpoints/pronosticos";
-import { Coord, List, RainXDay, WeatherXDay } from "@/interfaces/appInterface";
+import { Coord, List, WeatherXDay } from "@/interfaces/appInterface";
 export const UseWeatherMap = () => {
-  const [weather, setWeather] = useState<WeatherXDay[]>([]);
+  const [weather, setWeather] = useState<WeatherXDay | null>(null);
   const [forecast, setForecast] = useState<List[]>([]);
   const [coordinates, setCoordinates] = useState<Coord>({
     lat: null,
@@ -40,7 +40,7 @@ export const UseWeatherMap = () => {
       setIsLoading(true);
       console.log(coordinates);
       if (coordinates.lat !== null && coordinates.lon !== null) {
-        const res = await getweather(coordinates.lon, coordinates.lat);
+        const res = await getweather(coordinates.lat, coordinates.lon);
         setWeather(res);
       }
       setIsLoading(false);

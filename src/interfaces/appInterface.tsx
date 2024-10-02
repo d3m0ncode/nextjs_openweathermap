@@ -14,6 +14,8 @@ export interface WeatherXDay {
   cod: number;
 }
 
+
+
 export interface Clouds {
   all: number;
 }
@@ -90,9 +92,9 @@ export interface List {
 }
 
 interface Rain {
-    "1h"?: number;
-    "3h"?: number;
-  }
+  "1h"?: number;
+  "3h"?: number;
+}
 export interface Clouds {
   all: number;
 }
