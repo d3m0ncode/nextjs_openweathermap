@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import WaveBackground from "@/components/WaveBackground";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div style={{ position: "fixed", width: "100vw" }}>
+          <WaveBackground />
+        </div>
         {children}
       </body>
     </html>
